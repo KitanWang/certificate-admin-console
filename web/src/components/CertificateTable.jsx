@@ -102,7 +102,6 @@ export default function CertificateTable({
               </td>
               <td>
                 <span className="mono">{item.issuedLocalDateTime}</span>
-                <span className="subtle block">{item.issuedLocalDate}</span>
               </td>
               <td>
                 <StatusPill status={item.status} />
