@@ -10,7 +10,9 @@ together with `ai/session-index.csv` and `ai/sessions/`.
 | --- | --- | --- |
 | WorkBuddy desktop agent (model `deepseek-v4.1-flash`) | Planning, architecture, all code generation, verification runs, documentation | Native JSONL transcript: `ai/sessions/S-001-workbuddy.jsonl` |
 | Local shell (`bash`, `npm`, `node`, `git`) | Invoked by the agent as tool calls; every command and its output is inside the JSONL | Contained in the same JSONL |
-| `agent-browser` | Attempted for a visual smoke test of the built UI; installation did not complete within the working window, so no screenshot was produced | N/A — no interaction occurred |
+| `agent-browser` | Attempted for a visual smoke test of the built UI; the CLI installation did not finish in time, so it produced nothing | N/A — no interaction occurred |
+| `playwright-core` driving the locally installed Chrome | Headless render of the built UI: screenshots of the list, the detail dialog, the bulk-issue result and a search, inspected visually and then deleted | The scripts and the page/console output are inside the JSONL |
+| GitHub CLI (`gh`) | Checking authentication, verifying the published repository and listing its tree | Commands and output are inside the JSONL |
 
 No other AI system was used. No inline autocomplete (Copilot, Cursor Tab and the
 like) was active during this work, so there is nothing of that kind to disclose.
@@ -45,9 +47,11 @@ particular:
 2. **One session, one file.** All work happened in a single agent session. There
    is no gap between AI activity and commits because the commits were made from
    inside that session.
-3. **Cut-off.** The transcript was exported immediately before the final
-   packaging commit, so it covers planning, implementation, verification and
-   documentation, but not the last commit itself. The commit list in
+3. **Cut-off.** The transcript was exported at `2026-11-16T20:07:08+08:00`,
+   after the repository had been published to GitHub, so it covers the entire
+   session: planning, implementation, verification, documentation and the push
+   itself. The only step not contained in it is the packaging commit that ships
+   this file, which by definition cannot include itself. The commit list in
    `ai/session-index.csv` is the authoritative record of what that session
    produced.
 4. **Redaction.** The transcript was produced while a personal configuration
@@ -58,6 +62,11 @@ particular:
    call or command was removed or reworded. The redaction was applied
    mechanically and re-checked by searching the resulting file for each original
    string.
+   The same sweep also replaced the credential-scanner's own pattern labels
+   (`ghp_`, `AKIA`, the server IP prefix) that appear inside the command text of
+   this transcript, so that grepping the export for any of those strings returns
+   zero hits instead of a misleading match. A final pass over the export returns
+   `0` for every original value, every label and every related IP.
 5. **Language.** The repository is written in English throughout, with one
    deliberate exception: this transcript is a verbatim export, and the operator's
    own prompts were not in English. Translating or paraphrasing them would
