@@ -37,7 +37,7 @@ if (!dependenciesPresent()) {
   run(['install', '--no-audit', '--no-fund'], 'dependency installation');
 }
 
-const { getDb, applySchema, dbPath } = require('../server/db');
+const { getDb, applySchema, closeDb, dbPath } = require('../server/db');
 const { seedDatabase } = require('../server/seed');
 
 const db = getDb();
@@ -48,7 +48,8 @@ console.log(
     ? `[start] initialized demo data in ${dbPath()}`
     : `[start] existing database reused (${result.tenants} tenants)`,
 );
-db.close();
+// closeDb clears the module-level handle, so the server reopens it cleanly.
+closeDb();
 
 const dist = path.join(root, 'web', 'dist', 'index.html');
 if (!fs.existsSync(dist)) {

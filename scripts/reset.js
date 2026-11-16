@@ -13,11 +13,11 @@ for (const file of ['app.db', 'app.db-wal', 'app.db-shm']) {
   }
 }
 
-const { getDb, applySchema } = require('../server/db');
+const { getDb, applySchema, closeDb } = require('../server/db');
 const { seedDatabase } = require('../server/seed');
 
 const db = getDb();
 applySchema(db);
 const result = seedDatabase(db);
 console.log(`[reset] demo data restored (${result.tenants} tenants)`);
-db.close();
+closeDb();

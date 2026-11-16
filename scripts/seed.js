@@ -1,6 +1,6 @@
 'use strict';
 
-const { getDb, applySchema } = require('../server/db');
+const { getDb, applySchema, closeDb } = require('../server/db');
 const { seedDatabase } = require('../server/seed');
 
 const db = getDb();
@@ -13,4 +13,4 @@ console.log(
     : `[seed] demo data already present (${result.tenants} tenants), nothing to do`,
 );
 
-db.close();
+closeDb();
