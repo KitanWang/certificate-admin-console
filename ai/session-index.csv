@@ -1,0 +1,2 @@
+﻿session_id,tool,model,started_at,ended_at,export_file,purpose,related_commits
+S-001,WorkBuddy desktop agent (CodeBuddy runtime),deepseek-v4.1-flash,2026-11-16T19:36:00+08:00,2026-11-16T19:59:00+08:00,ai/sessions/S-001-workbuddy.jsonl,"Requirements analysis, architecture and stack selection, full implementation, A1-A7 verification and documentation",e74bfc7;1fa0d2b;66eca54

@@ -7,9 +7,14 @@ const dataDir = path.join(__dirname, '..', 'data');
 
 for (const file of ['app.db', 'app.db-wal', 'app.db-shm']) {
   const target = path.join(dataDir, file);
-  if (fs.existsSync(target)) {
+  if (!fs.existsSync(target)) continue;
+  try {
     fs.rmSync(target);
     console.log(`[reset] removed data/${file}`);
+  } catch (error) {
+    console.error(`[reset] cannot remove data/${file}: ${error.message}`);
+    console.error('[reset] stop the running server first, then try again.');
+    process.exit(1);
   }
 }
 
