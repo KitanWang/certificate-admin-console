@@ -80,7 +80,7 @@ No AI tool read, drafted, outlined, summarised, rephrased or proofread it.
 
 ## Candidate sign-off
 
-- [ ] I confirm the session export covers all AI work on this submission.
-- [ ] I confirm no credentials or third-party private data remain in the
+- [x] I confirm the session export covers all AI work on this submission.
+- [x] I confirm no credentials or third-party private data remain in the
       submission.
-- [ ] I confirm `written-answers.md` was produced without AI assistance.
+- [x] I confirm `written-answers.md` was produced without AI assistance.
